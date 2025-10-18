@@ -31,12 +31,16 @@ char system_roman_coefficient[system_roman_coefficient_elements] =
 
 constexpr int default_value = -1;
 
+// Enum typów symboli
+
 enum class type_system_e
 {
 	positional,
 	roman,
 	roman_coefficient
 };
+
+// Obliczanie potêgi o zadanej podstawie i wyk³adniku
 
 int power(int base, int exponent)
 {
@@ -45,6 +49,8 @@ int power(int base, int exponent)
 		result *= base;
 	return result;
 }
+
+// Zwrócenie wartoœci liczbowej symbolu cyfry
 
 int get_number(type_system_e type_system, char symbol)
 {
@@ -83,19 +89,55 @@ int get_number(type_system_e type_system, char symbol)
 	return number;
 }
 
-int get_symbol_positional(char symbol)
+// Zwrócenie wartoœci liczbowej symbolu cyfry systemów pozycyjnych
+
+int get_number_positional(char symbol)
 {
 	return get_number(type_system_e::positional, symbol);
 }
 
-int get_symbol_roman(char symbol)
+// Zwrócenie wartoœci liczbowej symbolu cyfry systemu rzymskiego
+
+int get_number_roman(char symbol)
 {
 	return get_number(type_system_e::roman, symbol);
 }
 
-int get_system_roman_coefficient(char symbol)
+// Zwrócenie wartoœci przelicznika symbolu systemu rzymskiego
+
+int get_number_roman_coefficient(char symbol)
 {
 	return get_number(type_system_e::roman_coefficient, symbol);
+}
+
+// Zwrócenie symbolu cyfry systemu pozycyjnego
+
+char get_symbol_positional(int index)
+{
+	if ((index < 0) || (index >= system_positional_elements))
+		return ' ';
+	else
+		return system_positional[index];
+}
+
+// Zwrócenie symbolu cyfry systemu rzymskiego
+
+char get_symbol_roman(int index)
+{
+	if ((index < 0) || (index >= system_roman_elements))
+		return ' ';
+	else
+		return system_roman[index];
+}
+
+// Zwrócenie symbolu przelicznika systemu rzymskiego
+
+char get_symbol_roman_coefficient(int index)
+{
+	if ((index < 0) || (index >= system_roman_coefficient_elements))
+		return ' ';
+	else
+		return system_roman_coefficient[index];
 }
 
 #endif
