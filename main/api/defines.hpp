@@ -11,9 +11,7 @@
 
 constexpr int system_positional_elements = 20;
 
-constexpr int system_roman_elements = 7;
-
-constexpr int system_roman_coefficient_elements = 2;
+constexpr int system_roman_elements = 9;
 
 // Definicje elementów systemów liczbowych
 
@@ -24,9 +22,6 @@ char system_positional[system_positional_elements] =
 char system_roman[system_roman_elements] = 
 { 'I', 'V', 'X', 'L', 'C', 'D', 'M' };
 
-char system_roman_coefficient[system_roman_coefficient_elements] = 
-{ '|', '-' };
-
 // Funkcje zwracajace wartosc liczbow¹ elementu
 
 constexpr int default_value = -1;
@@ -36,8 +31,7 @@ constexpr int default_value = -1;
 enum class type_system_e
 {
 	positional,
-	roman,
-	roman_coefficient
+	roman
 };
 
 // Obliczanie potêgi o zadanej podstawie i wyk³adniku
@@ -64,9 +58,6 @@ int get_number(type_system_e type_system, char symbol)
 	case type_system_e::roman:
 		max_range = system_roman_elements;
 		break;
-	case type_system_e::roman_coefficient:
-		max_range = system_roman_coefficient_elements;
-		break;
 	}
 	for (int index = 0; index < max_range; ++index)
 	{
@@ -79,10 +70,6 @@ int get_number(type_system_e type_system, char symbol)
 		case type_system_e::roman:
 			if (symbol == system_roman[index])
 				number = (1 + 4 * (index % 2)) * power(10, index / 2);
-			break;
-		case type_system_e::roman_coefficient:
-			if (symbol == system_roman_coefficient[index])
-				number = 100 * power(10, index);
 			break;
 		}
 	}
@@ -103,13 +90,6 @@ int get_number_roman(char symbol)
 	return get_number(type_system_e::roman, symbol);
 }
 
-// Zwrócenie wartoœci przelicznika symbolu systemu rzymskiego
-
-int get_number_roman_coefficient(char symbol)
-{
-	return get_number(type_system_e::roman_coefficient, symbol);
-}
-
 // Zwrócenie symbolu cyfry systemu pozycyjnego
 
 char get_symbol_positional(int index)
@@ -128,16 +108,6 @@ char get_symbol_roman(int index)
 		return ' ';
 	else
 		return system_roman[index];
-}
-
-// Zwrócenie symbolu przelicznika systemu rzymskiego
-
-char get_symbol_roman_coefficient(int index)
-{
-	if ((index < 0) || (index >= system_roman_coefficient_elements))
-		return ' ';
-	else
-		return system_roman_coefficient[index];
 }
 
 #endif

@@ -7,8 +7,6 @@
 #ifndef CONVERT_HPP
 #define CONVERT_HPP
 
-#include "defines.hpp"
-#include <cstdlib>
 #include <string>
 
 // Konwersja liczby w systemie dziesiêtnym na inny system pozycyjny (podstawa 2-20)
@@ -21,7 +19,7 @@ unsigned long long convert_other_positional_to_decimal(std::string number_char, 
 
 // Konwersja liczby w systemie dziesiêtnym na system rzymski
 
-std::string convert_decimal_to_romal(unsigned long long number_digit);
+std::string convert_decimal_to_roman(unsigned long long number_digit);
 
 // Konwersja liczby w systemie rzymskim na system dziesiêtny
 
@@ -37,5 +35,5 @@ unsigned long long convert_minus_two_positional_to_decimal(std::string number_ch
 
 #endif
 
- /* convert.hpp */
- /********** END_OF_FILE **********/
+/* convert.hpp */
+/********** END_OF_FILE **********/
