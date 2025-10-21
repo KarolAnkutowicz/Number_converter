@@ -17,6 +17,10 @@ std::string convert_decimal_to_other_positional(unsigned long long number_digit,
 
 unsigned long long convert_other_positional_to_decimal(std::string number_char, int base);
 
+// Metoda pomocnicza - dodawanie symbolu rzymskiego na pocz¹tek napisu
+
+std::string add_char_to_begin_string(std::string base, char symbol);
+
 // Konwersja liczby w systemie dziesiêtnym na system rzymski
 
 std::string convert_decimal_to_roman(unsigned long long number_digit);

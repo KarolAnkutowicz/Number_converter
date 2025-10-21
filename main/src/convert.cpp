@@ -7,6 +7,7 @@
 
 #include "../api/convert.hpp"
 #include "../api/defines.hpp"
+#include <iostream>
 
 std::string convert_decimal_to_other_positional(unsigned long long number_digit, int base)
 {
@@ -48,27 +49,73 @@ unsigned long long convert_other_positional_to_decimal(std::string number_char, 
 	return result;
 }
 
+std::string add_char_to_begin_string(std::string base_string, char symbol)
+{
+	std::string result = "";
+	result.push_back(symbol);
+	result += base_string;
+	return result;
+}
+
+
 std::string convert_decimal_to_roman(unsigned long long number_digit)
 {
 	std::string result = "";
+	unsigned long long number = number_digit, rest = {};
+	int position = 0;
 	if (number_digit > 3999)
 		return result;
 	else
 	{
-		// TODO
+		do
+		{
+			rest = number % 10;
+			if (0 != rest)
+			{
+				if ((4 == rest) || (9 == rest))
+				{
+					result = add_char_to_begin_string(result, system_roman[position + rest/4]);
+					result = add_char_to_begin_string(result, system_roman[position]);
+				}
+				else
+				{
+					for (int i = 0; i < (rest < 4 ? rest : (rest - 5)); ++i)
+						result = add_char_to_begin_string(result, system_roman[position]);
+					if (rest > 4)
+						result = add_char_to_begin_string(result, system_roman[position + 1]);
+				}
+			}
+			number = (number - rest) / 10;
+			position += 2;
+		} while (number > 0);
 	}
 	return result;
 }
 
 unsigned long long convert_roman_to_decimal(std::string number_char)
 {
+	std::string number = number_char;
 	unsigned long long result = 0;
-	char last_symbol = {};
-	if (0 == sizeof(number_char))
+	char current_symbol = {};
+	if (0 == sizeof(number))
 		return result;
 	else
 	{
-		// TODO
+		char previous_symbol = number.back();
+		do
+		{
+			current_symbol = number.back();
+			if (get_number_roman(current_symbol) >= get_number_roman(previous_symbol) )
+			{
+				result += get_number_roman(current_symbol);
+			}
+			else
+			{
+				result -= get_number_roman(current_symbol);
+			}
+			previous_symbol = current_symbol;
+			number.pop_back();
+		} while (number.length() > 0);
 	}
 	return result;
 }
