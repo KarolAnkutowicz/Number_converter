@@ -8,42 +8,42 @@
 #include "../api/convert.hpp"
 #include "../api/defines.hpp"
 #include <iostream>
+#include <vector>
 
 std::string convert_decimal_to_other_positional(unsigned long long number_digit, int base)
 {
 	std::string result = "";
-	if ((base < 2) || (base > 20))
-		return result;
-	else if (10 == base)
-		result = std::to_string(number_digit);
-	else
+	if ((base >= 2) && (base <= 20))
 	{
-		int rest = 0;
-		unsigned long long number = number_digit;
-		do
+		if (10 == base)
+			result = std::to_string(number_digit);
+		else
 		{
-			rest = number % base;
-			result = get_symbol_positional(rest) + result;
-			number = (number - rest) / base;
-		} while (number > 0);
+			int rest = 0;
+			unsigned long long number = number_digit;
+			do
+			{
+				rest = number % base;
+				result = get_symbol_positional(rest) + result;
+				number = (number - rest) / base;
+			} while (number > 0);
+		}
 	}
 	return result;
 }
 
-unsigned long long convert_other_positional_to_decimal(std::string number_char, int base)
+long long convert_other_positional_to_decimal(std::string number_char, int base)
 {
-	unsigned long long result = 0;
-	if (((base < 2) || (base > 20)) || (0 == sizeof(number_char)))
-		return result;
-	else
+	long long result = 0;
+	if (((-2 == base) || ((base >= 2) && (base <= 20))) && (0 != sizeof(number_char)))
 	{
-		unsigned long long power = 1;
+		long long coefficient = 1;
 		std::string number = number_char;
 		do
 		{
-			result += get_number_positional(number.back()) * power;
+			result += get_number_positional(number.back()) * coefficient;
 			number.pop_back();
-			power *= base;
+			coefficient *= base;
 		} while (number.size() > 0);
 	}
 	return result;
@@ -120,16 +120,48 @@ unsigned long long convert_roman_to_decimal(std::string number_char)
 	return result;
 }
 
-std::string convert_decimal_to_minus_two_positional(unsigned long long number_digit)
+int get_length_number(long long number_digit)
 {
-	// TODO
-	return "";
+	int index = 0;
+	if (0 != number_digit)
+	{
+		long long number = std::abs(number_digit);
+		if (number_digit > 0)
+			index = 1;
+		else
+			index = 2;
+		long long max_limit = index, temp = index;
+		while (max_limit < number)
+		{
+			temp *= 4;
+			max_limit += temp;
+			index += 2;
+		}
+	}
+	return index;
 }
 
-unsigned long long convert_minus_two_positional_to_decimal(std::string number_char)
+std::string convert_decimal_to_minus_two_positional(long long number_digit)
 {
-	// TODO
-	return 0;
+	std::string result = "";
+	if (0 != number_digit)
+	{
+		long long number = number_digit;
+		long long number_temp{};
+		for (int i = 0; i < get_length_number(number); ++i)
+			result += '0';
+		do
+		{
+			for (int i = 0; i < get_length_number(number); ++i)
+				result.pop_back();
+			result += '1';
+			for (int i = 0; i < (get_length_number(number) - 1); ++i)
+				result += '0';
+			number_temp = power(-2, get_length_number(number) - 1);
+			number -= number_temp;
+		} while (0 != number);
+	}
+	return result;
 }
 
 /* convert.cpp */
