@@ -7,7 +7,6 @@
 
 #include "../api/convert.hpp"
 #include "../api/defines.hpp"
-#include <iostream>
 #include <vector>
 
 bool check_number(std::string base_number, int base)
