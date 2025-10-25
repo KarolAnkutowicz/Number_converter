@@ -10,41 +10,65 @@
 #include <iostream>
 #include <vector>
 
-std::string convert_decimal_to_other_positional(unsigned long long number_digit, int base)
+bool check_number(std::string base_number, int base)
 {
-	std::string result = "";
-	if ((base >= 2) && (base <= 20))
+	bool result = true;
+	if (" " == base_number)
+		result = false;
+	else
 	{
-		if (10 == base)
-			result = std::to_string(number_digit);
-		else
+		std::string number = base_number;
+		do
 		{
-			int rest = 0;
-			unsigned long long number = number_digit;
-			do
+			if (get_number_positional(number.back()) > std::abs(base - 1))
 			{
-				rest = number % base;
-				result = get_symbol_positional(rest) + result;
-				number = (number - rest) / base;
-			} while (number > 0);
-		}
+				result = false;
+				break;
+			}
+			number.pop_back();
+		} while (0 != number.size());
 	}
 	return result;
 }
 
-long long convert_other_positional_to_decimal(std::string number_char, int base)
+std::string convert_positionals(std::string base_number, int base_from, int base_to)
 {
-	long long result = 0;
-	if (((-2 == base) || ((base >= 2) && (base <= 20))) && (0 != sizeof(number_char)))
+	std::string result = "";
+	if ( ("" != base_number) && check_number(base_number, base_from) 
+		&& (((base_from >= 2) && (base_from <= 20)) || (-2 == base_from)) && ((base_to >= 2) && (base_to <= 20)) )
 	{
-		long long coefficient = 1;
-		std::string number = number_char;
-		do
+		if (base_from == base_to)
+			result = base_number;
+		else
 		{
-			result += get_number_positional(number.back()) * coefficient;
-			number.pop_back();
-			coefficient *= base;
-		} while (number.size() > 0);
+			long long semi_result = 0;
+			if (10 == base_from)
+				semi_result = std::stoll(base_number);
+			else
+			{
+				long long coefficient = 1;
+				std::string semi_number = base_number;
+				do
+				{
+					semi_result += get_number_positional(semi_number.back()) * coefficient;
+					semi_number.pop_back();
+					coefficient *= base_from;
+				} while (0 != semi_number.size());
+			}
+			if (10 == base_to)
+				result = std::to_string(semi_result);
+			else
+			{
+				long long rest = 0;
+				long long number = semi_result;
+				do
+				{
+					rest = number % base_to;
+					result = get_symbol_positional(rest) + result;
+					number = (number - rest) / base_to;
+				} while (number != 0);
+			}
+		}
 	}
 	return result;
 }

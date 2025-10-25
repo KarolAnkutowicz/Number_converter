@@ -11,14 +11,6 @@ int main()
 {
     std::cout << "Number converter..." << std::endl;
     /*std::cout
-        << 100 << " " << 2 << " " << convert_decimal_to_other_positional(100, 2) << std::endl
-        << 32 << " " << 2 << " " << convert_decimal_to_other_positional(32, 2) << std::endl
-        << 57 << " " << 2 << " " << convert_decimal_to_other_positional(57, 2) << std::endl;*/
-    /*std::cout
-        << "1111" << " " << 2 << " " << convert_other_positional_to_decimal("1111", 2) << std::endl
-        << "110011" << " " << 2 << " " << convert_other_positional_to_decimal("110011", 2) << std::endl
-        << "100" << " " << 2 << " " << convert_other_positional_to_decimal("100", 2) << std::endl;*/
-    /*std::cout
         << "1" << " " << convert_decimal_to_roman(1) << std::endl
         << "5" << " " << convert_decimal_to_roman(5) << std::endl
         << "10" << " " << convert_decimal_to_roman(10) << std::endl
@@ -79,6 +71,16 @@ int main()
         << 100 << " 4 " << convert_other_positional_to_decimal("100", -2) << std::endl
         << 101 << " 5 " << convert_other_positional_to_decimal("101", -2) << std::endl
         << 11010 << " 6 " << convert_other_positional_to_decimal("11010", -2) << std::endl;*/
+    std::cout
+        << "63 10 2 " << convert_positionals("63", 10, 2) << std::endl
+        << "64 10 2 " << convert_positionals("64", 10, 2) << std::endl
+        << "1111 2 10 " << convert_positionals("1111", 2, 10) << std::endl
+        << "111 3 10 " << convert_positionals("111", 3, 10) << std::endl
+        << "AA 16 10 " << convert_positionals("AA", 16, 10) << std::endl
+        << "FF 16 10 " << convert_positionals("FF", 16, 10) << std::endl
+        << "111 -2 10 " << convert_positionals("111", -2, 10) << std::endl
+        << "11011 -2 10 " << convert_positionals("11011", -2, 10) << std::endl
+        ;
 }
 
 /* main.cpp */

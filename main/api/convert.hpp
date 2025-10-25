@@ -9,13 +9,13 @@
 
 #include <string>
 
-// Konwersja liczby w systemie dziesiêtnym na inny system pozycyjny (podstawa 2-20)
+// Funkcja pomocnicza - sprawdzenie poprawnoœci liczby w danym systemie
 
-std::string convert_decimal_to_other_positional(unsigned long long number_digit, int base);
+bool check_number(std::string base_number, int base);
 
-// Konwersja liczby z innego systemu pozycyjnego (podstawa -2 lub miêdzy 2-20) na system dziêsiêtny
+// Konwersja z dowolnego systemu pozycyjnego na inny dowolny
 
-long long convert_other_positional_to_decimal(std::string number_char, int base);
+std::string convert_positionals(std::string base_number, int base_from, int base_to);
 
 // Funkcja pomocnicza - dodawanie symbolu rzymskiego na pocz¹tek napisu
 
