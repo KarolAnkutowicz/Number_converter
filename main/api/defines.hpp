@@ -7,6 +7,8 @@
 #ifndef DEFINES_HPP
 #define DEFINES_HPP
 
+#include <string>
+
 // Definicje rozmiarów tablic elementów systemów liczbowych
 
 constexpr int system_positional_elements = 20;
@@ -33,6 +35,19 @@ enum class type_system_e
 	positional,
 	roman
 };
+
+std::string get_string_type_system(type_system_e type_system)
+{
+	switch (type_system)
+	{
+	case type_system_e::positional:
+		return "pozycyjny";
+	case type_system_e::roman:
+		return "rzymski";
+	default:
+		return "";
+	}
+}
 
 // Obliczanie potêgi o zadanej podstawie i wyk³adniku
 

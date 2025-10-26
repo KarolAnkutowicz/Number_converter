@@ -8,6 +8,18 @@
 #ifndef PRINTER_HPP
 #define PRINTER_HPP
 
+#include <iostream>
+
+class printer_t
+{
+public:
+	printer_t();
+	void print_entrance();
+	void print_main_menu();
+	void await_option();
+	void print_goodbye();
+};
+
 #endif
 
  /* printer.hpp */

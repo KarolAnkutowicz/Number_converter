@@ -58,7 +58,7 @@ std::string convert_positionals(std::string base_number, int base_from, int base
 				result = std::to_string(semi_result);
 			else
 			{
-				long long rest = 0;
+				int rest = 0;
 				long long number = semi_result;
 				do
 				{
