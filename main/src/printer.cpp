@@ -46,6 +46,18 @@ void printer_t::print_positional_positional_convert(char option)
 	std::cout << ":" << std::endl;
 }
 
+void printer_t::print_roman_positional_convert(char /*option*/)
+{
+	system("CLS");
+	// TODO
+}
+
+void printer_t::print_files_handling(char /*option*/)
+{
+	system("CLS");
+	// TODO
+}
+
 void printer_t::print_repeat_module()
 {
 	std::cout << " (t) Czy chcesz konwertowac ponownie?" << std::endl;
@@ -55,6 +67,11 @@ void printer_t::print_complete_result(std::string number_arg, int base_from, int
 {
 	std::cout << std::endl << " Liczba " << number_arg << " o podstawie " << base_from
 		<< " po zamianie na liczbe o podstawie " << base_to << " ma postac " << number_res << "." << std::endl << std::endl;
+}
+
+void printer_t::print_complete_result(std::string /*number_arg*/, int /*base*/, std::string /*number_res*/)
+{
+	// TODO
 }
 
 void printer_t::print_goodbye()

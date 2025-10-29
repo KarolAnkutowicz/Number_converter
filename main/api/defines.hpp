@@ -9,33 +9,32 @@
 
 #include <string>
 
-// Definicje rozmiarów tablic elementów systemów liczbowych
-
+// Definicje rozmiaru tablicy cyfr systemów pozycyjnych
 constexpr int system_positional_elements = 20;
 
-constexpr int system_roman_elements = 9;
+// Definicja rozmiaru tablicy cyfr rzymskiech
+constexpr int system_roman_elements = 7;
 
-// Definicje elementów systemów liczbowych
-
+// Definicja tablicy cyfr systemów pozcycyjnych
 char system_positional[system_positional_elements] =
 { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
   'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J' };
 
+// Definicja tablicy cyfr systemu rzymskiego
 char system_roman[system_roman_elements] = 
 { 'I', 'V', 'X', 'L', 'C', 'D', 'M' };
 
-// Funkcje zwracajace wartosc liczbow¹ elementu
-
+// Funkcje zwracajace wartosc liczbow¹ elementu domyœlnego
 constexpr int default_value = -1;
 
-// Enum typów symboli
-
+// Enum typów cyfr
 enum class type_system_e
 {
 	positional,
 	roman
 };
 
+// Funkcja zwracaj¹ca napis okreœlaj¹cy wartoœæ enuma typów cyfr
 std::string get_string_type_system(type_system_e type_system)
 {
 	switch (type_system)
@@ -49,8 +48,7 @@ std::string get_string_type_system(type_system_e type_system)
 	}
 }
 
-// Obliczanie potêgi o zadanej podstawie i wyk³adniku
-
+// Funkcja obliczaj¹ca potêgê o zadanej podstawie i wyk³adniku
 int power(int base, int exponent)
 {
 	int result = 1;
@@ -59,8 +57,7 @@ int power(int base, int exponent)
 	return result;
 }
 
-// Zwrócenie wartoœci liczbowej symbolu cyfry
-
+// Funkcja zwracaj¹ca wartoœæ liczbow¹ cyfry
 int get_number(type_system_e type_system, char symbol)
 {
 	int number = default_value;
@@ -91,22 +88,19 @@ int get_number(type_system_e type_system, char symbol)
 	return number;
 }
 
-// Zwrócenie wartoœci liczbowej symbolu cyfry systemów pozycyjnych
-
+// Funkcja zwracaj¹ca wartoœæ liczbow¹ cyfry systemów pozycyjnych
 int get_number_positional(char symbol)
 {
 	return get_number(type_system_e::positional, symbol);
 }
 
-// Zwrócenie wartoœci liczbowej symbolu cyfry systemu rzymskiego
-
+// Funkcja zwracaj¹ca wartoœæ liczbow¹ cyfry systemu rzymskiego
 int get_number_roman(char symbol)
 {
 	return get_number(type_system_e::roman, symbol);
 }
 
-// Zwrócenie symbolu cyfry systemu pozycyjnego
-
+// Funkcja zwracaj¹ca cyfrê systemu pozycyjnego
 char get_symbol_positional(int index)
 {
 	if ((index < 0) || (index >= system_positional_elements))
@@ -115,8 +109,7 @@ char get_symbol_positional(int index)
 		return system_positional[index];
 }
 
-// Zwrócenie symbolu cyfry systemu rzymskiego
-
+// Funkcja zwracaj¹ca cyfrê systemu rzymskiego
 char get_symbol_roman(int index)
 {
 	if ((index < 0) || (index >= system_roman_elements))
