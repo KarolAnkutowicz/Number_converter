@@ -17,9 +17,9 @@ public:
 	handling_t();
 private:
 	void main_handling();
-	void positional_positional_handling();
-	void roman_positional_handling();
-	void files_handling();
+	void positional_positional_handling(char& option);
+	void roman_positional_handling(char& option);
+	void files_handling(char& option);
 	char option;
 	printer_t printer;
 };

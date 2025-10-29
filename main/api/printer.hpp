@@ -16,8 +16,12 @@ public:
 	printer_t();
 	void print_entrance();
 	void print_main_menu();
-	void await_option();
+	void print_positional_positional_convert(char option);
+	void print_repeat_module();
+	void print_complete_result(std::string number_arg, int base_from, int base_to, std::string number_res);
 	void print_goodbye();
+
+	void await_option();
 };
 
 #endif
