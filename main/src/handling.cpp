@@ -5,7 +5,6 @@
  * file: handling.cpp
  */
 
-#include "../api/convert.hpp"
 #include "../api/handling.hpp"
 
 handling_t::handling_t() : option{}, printer{}
@@ -60,14 +59,14 @@ void handling_t::positional_positional_handling(char& option)
 	switch (option)
 	{
 	case '1': // 2-20 na 2-20
-		number_result = convert_positionals(number, base_1, base_2);
+		number_result = convert.convert_positionals(number, base_1, base_2);
 		break;
 	case '2': // 2-20 na -2
-		number_temp = convert_positionals(number, base_1, 10);
-		number_result = convert_decimal_to_minus_two_positional(std::stoll(number_temp));
+		number_temp = convert.convert_positionals(number, base_1, 10);
+		number_result = convert.convert_decimal_to_minus_two_positional(std::stoll(number_temp));
 		break;
 	case '3': // -2 na 2-20
-		number_result = convert_positionals(number, -2, base_1);
+		number_result = convert.convert_positionals(number, -2, base_1);
 		break;
 	default:
 		break;

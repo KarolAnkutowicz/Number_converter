@@ -9,32 +9,14 @@
 #include "../api/defines.hpp"
 #include <vector>
 
-bool check_number(std::string base_number, int base)
-{
-	bool result = true;
-	if (" " == base_number)
-		result = false;
-	else
-	{
-		std::string number = base_number;
-		do
-		{
-			if (get_number_positional(number.back()) > std::abs(base - 1))
-			{
-				result = false;
-				break;
-			}
-			number.pop_back();
-		} while (0 != number.size());
-	}
-	return result;
-}
+convert_t::convert_t()
+{}
 
-std::string convert_positionals(std::string base_number, int base_from, int base_to)
+std::string convert_t::convert_positionals(std::string base_number, int base_from, int base_to)
 {
 	std::string result = "";
-	if ( ("" != base_number) && check_number(base_number, base_from) 
-		&& (((base_from >= 2) && (base_from <= 20)) || (-2 == base_from)) && ((base_to >= 2) && (base_to <= 20)) )
+	if (("" != base_number) && check_number(base_number, base_from)
+		&& (((base_from >= 2) && (base_from <= 20)) || (-2 == base_from)) && ((base_to >= 2) && (base_to <= 20)))
 	{
 		if (base_from == base_to)
 			result = base_number;
@@ -72,16 +54,7 @@ std::string convert_positionals(std::string base_number, int base_from, int base
 	return result;
 }
 
-std::string add_char_to_begin_string(std::string base_string, char symbol)
-{
-	std::string result = "";
-	result.push_back(symbol);
-	result += base_string;
-	return result;
-}
-
-
-std::string convert_decimal_to_roman(unsigned long long number_digit)
+std::string convert_t::convert_decimal_to_roman(unsigned long long number_digit)
 {
 	std::string result = "";
 	unsigned long long number = number_digit, rest = {};
@@ -97,7 +70,7 @@ std::string convert_decimal_to_roman(unsigned long long number_digit)
 			{
 				if ((4 == rest) || (9 == rest))
 				{
-					result = add_char_to_begin_string(result, system_roman[position + rest/4]);
+					result = add_char_to_begin_string(result, system_roman[position + rest / 4]);
 					result = add_char_to_begin_string(result, system_roman[position]);
 				}
 				else
@@ -115,7 +88,7 @@ std::string convert_decimal_to_roman(unsigned long long number_digit)
 	return result;
 }
 
-unsigned long long convert_roman_to_decimal(std::string number_char)
+unsigned long long convert_t::convert_roman_to_decimal(std::string number_char)
 {
 	std::string number = number_char;
 	unsigned long long result = 0;
@@ -128,7 +101,7 @@ unsigned long long convert_roman_to_decimal(std::string number_char)
 		do
 		{
 			current_symbol = number.back();
-			if (get_number_roman(current_symbol) >= get_number_roman(previous_symbol) )
+			if (get_number_roman(current_symbol) >= get_number_roman(previous_symbol))
 			{
 				result += get_number_roman(current_symbol);
 			}
@@ -143,28 +116,7 @@ unsigned long long convert_roman_to_decimal(std::string number_char)
 	return result;
 }
 
-int get_length_number(long long number_digit)
-{
-	int index = 0;
-	if (0 != number_digit)
-	{
-		long long number = std::abs(number_digit);
-		if (number_digit > 0)
-			index = 1;
-		else
-			index = 2;
-		long long max_limit = index, temp = index;
-		while (max_limit < number)
-		{
-			temp *= 4;
-			max_limit += temp;
-			index += 2;
-		}
-	}
-	return index;
-}
-
-std::string convert_decimal_to_minus_two_positional(long long number_digit)
+std::string convert_t::convert_decimal_to_minus_two_positional(long long number_digit)
 {
 	std::string result = "";
 	if (0 != number_digit)
@@ -185,6 +137,56 @@ std::string convert_decimal_to_minus_two_positional(long long number_digit)
 		} while (0 != number);
 	}
 	return result;
+}
+
+bool convert_t::check_number(std::string base_number, int base)
+{
+	bool result = true;
+	if (" " == base_number)
+		result = false;
+	else
+	{
+		std::string number = base_number;
+		do
+		{
+			if (get_number_positional(number.back()) > std::abs(base - 1))
+			{
+				result = false;
+				break;
+			}
+			number.pop_back();
+		} while (0 != number.size());
+	}
+	return result;
+}
+
+std::string convert_t::add_char_to_begin_string(std::string base_string, char symbol)
+{
+	std::string result = "";
+	result.push_back(symbol);
+	result += base_string;
+	return result;
+}
+
+int convert_t::get_length_number(long long number_digit)
+{
+	int index = 0;
+	if (0 != number_digit)
+	{
+		long long number = std::abs(number_digit);
+		if (number_digit > 0)
+			index = 1;
+		else
+			index = 2;
+		long long max_limit = index, temp = index;
+		while (max_limit < number)
+		{
+			temp *= 4;
+			max_limit += temp;
+			index += 2;
+		}
+	}
+	return index;
 }
 
 /* convert.cpp */

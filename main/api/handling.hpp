@@ -21,6 +21,7 @@ private:
 	void roman_positional_handling(char& option);
 	void files_handling(char& option);
 	char option;
+	convert_t convert;
 	printer_t printer;
 };
 
