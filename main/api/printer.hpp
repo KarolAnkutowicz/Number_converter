@@ -8,6 +8,7 @@
 #ifndef PRINTER_HPP
 #define PRINTER_HPP
 
+#include "defines.hpp"
 #include <iostream>
 
 class printer_t
@@ -38,7 +39,7 @@ public:
 	void print_complete_result(std::string number_arg, int base_from, int base_to, std::string number_res);
 
 	// Metoda wypisuj¹ca rozwi¹zanie
-	void print_complete_result(std::string number_arg, int base, std::string number_res);
+	void print_complete_result(std::string number_arg, int base, std::string number_res, type_system_e first_number);
 
 	// Metoda wypisuj¹ca tekst koñcowy
 	void print_goodbye();

@@ -7,7 +7,8 @@
 #ifndef CONVERT_HPP
 #define CONVERT_HPP
 
-#include <string>
+#include "../api/defines.hpp"
+#include <vector>
 
 class convert_t
 {

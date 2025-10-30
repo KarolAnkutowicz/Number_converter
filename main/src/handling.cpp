@@ -49,11 +49,12 @@ void handling_t::main_handling()
 
 void handling_t::positional_positional_handling(char& option)
 {
-	printer.print_positional_positional_convert(option);
 	std::string number{}, number_temp{}, number_result{};
 	int base_1{}, base_2{};
-	std::cin >> number >> base_1;
 	char option_loc;
+
+	printer.print_positional_positional_convert(option);
+	std::cin >> number >> base_1;
 	if ('1' == option)
 		std::cin >> base_2;
 	switch (option)
@@ -64,9 +65,12 @@ void handling_t::positional_positional_handling(char& option)
 	case '2': // 2-20 na -2
 		number_temp = convert.convert_positionals(number, base_1, 10);
 		number_result = convert.convert_decimal_to_minus_two_positional(std::stoll(number_temp));
+		base_2 = -2;
 		break;
 	case '3': // -2 na 2-20
 		number_result = convert.convert_positionals(number, -2, base_1);
+		base_2 = base_1;
+		base_1 = -2;
 		break;
 	default:
 		break;
@@ -74,24 +78,37 @@ void handling_t::positional_positional_handling(char& option)
 	printer.print_complete_result(number, base_1, base_2, number_result);
 	printer.print_repeat_module();
 	std::cin >> option_loc;
-	if ('t' == option_loc)
-		positional_positional_handling(option);
-	else
-		main_handling();
+	('t' == option_loc) ? positional_positional_handling(option) : main_handling();
 }
 
 void handling_t::roman_positional_handling(char& option)
 {
-	// TODO - obs³uga konwersji z wykorzystaniem systemu rzymskiego
+	std::string number{}, number_temp{}, number_result{};
+	unsigned long long number_temp_roman{};
+	int base;
+	type_system_e type_system = type_system_e::positional;
+	char option_loc;
+
+	printer.print_roman_positional_convert(option);
+	std::cin >> number >> base;
 	switch (option)
 	{
-	case '4': // 10 na rzymski
+	case '4': // pozycyjny na rzymski
+		number_temp = convert.convert_positionals(number, base, 10);
+		number_result = convert.convert_decimal_to_roman(std::stoll(number_temp));
 		break;
-	case '5': // rzymski na 10
+	case '5': // rzymski na pozycyjny
+		number_temp_roman = convert.convert_roman_to_decimal(number);
+		number_result = convert.convert_positionals(std::to_string(number_temp_roman), 10, base);
+		type_system = type_system_e::roman;
 		break;
 	default:
 		break;
 	}
+	printer.print_complete_result(number, base, number_result, type_system);
+	printer.print_repeat_module();
+	std::cin >> option_loc;
+	('t' == option_loc) ? roman_positional_handling(option) : main_handling();
 }
 
 void handling_t::files_handling(char& option)

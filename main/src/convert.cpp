@@ -6,8 +6,6 @@
  */
 
 #include "../api/convert.hpp"
-#include "../api/defines.hpp"
-#include <vector>
 
 convert_t::convert_t()
 {}

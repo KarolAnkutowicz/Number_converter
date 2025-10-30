@@ -28,8 +28,8 @@ void printer_t::print_main_menu()
 		<< " (4) zamiana z systemu pozycyjnego o podstawie 2-20 na system rzymski" << std::endl
 		<< " (5) zamiana z systemu rzymskiego na system pozycyjny o podstawie 2-20" << std::endl
 		<< std::endl
-		<< " (6) wygeneruj plik z testami: systemy pozycyjne 2-20" << std::endl
-		<< " (7) wygeneruj plik z testami: pozycyjny -2 <-> pozycyne 2-20" << std::endl
+		<< " (6) wygeneruj plik z testami: pozycyjne 2-20 <-> pozycyjne 2-20" << std::endl
+		<< " (7) wygeneruj plik z testami: pozycyjne 2-20 <-> pozycyjny -2" << std::endl
 		<< " (8) wygeneruj plik z testami: pozycyjne 2-20 <-> rzymskie" << std::endl
 		<< std::endl
 		<< " (w) wyjscie" << std::endl << std::endl;
@@ -38,24 +38,38 @@ void printer_t::print_main_menu()
 void printer_t::print_positional_positional_convert(char option)
 {
 	system("CLS");
-	std::cout << std::endl << " Podaj liczbe";
-	if (('1' == option) || ('2' == option))
-		std::cout << ", podstawe podanej liczby";
-	if (('1' == option) || ('3' == option))
-		std::cout << ", podstawe nowej liczby";
+	std::cout << std::endl << " Zamiana z systemu pozycyjnego o podstawie ";
+	(('1' == option) || ('2' == option)) ? std::cout << "2-20" : std::cout << "-2";
+	std::cout << " na ";
+	(('1' == option) || ('3' == option)) ? std::cout << "2-20" : std::cout << "-2";
+	std::cout << std::endl << std::endl << " Podaj liczbe";
+	(('1' == option) || ('2' == option)) ? std::cout << ", podstawe podanej liczby" : std::cout << "";
+	(('1' == option) || ('3' == option)) ? std::cout << ", podstawe nowej liczby" : std::cout << "";
 	std::cout << ":" << std::endl;
 }
 
-void printer_t::print_roman_positional_convert(char /*option*/)
+void printer_t::print_roman_positional_convert(char option)
 {
 	system("CLS");
-	// TODO
+	std::cout << std::endl << " Zamiana z systemu ";
+	('4' == option) ? std::cout << "pozycyjnego o podstawie 2-20" : std::cout << "rzymskiego";
+	std::cout << " na system ";
+	('4' == option) ? std::cout << "rzymski" : std::cout << "pozycyjny o podstawie 2-20";
+	std::cout << ":" << std::endl;
 }
 
-void printer_t::print_files_handling(char /*option*/)
+void printer_t::print_files_handling(char option)
 {
 	system("CLS");
-	// TODO
+	std::cout << std::endl << " Wygeneruj plik z testami: pozycyjne 2-20 <-> ";
+	switch (option)
+	{
+	case '6': std::cout << "pozycyjne 2-20"; break;
+	case '7': std::cout << "pozycyjny -20"; break;
+	case '8': std::cout << "rzymskie"; break;
+	default: break;
+	}
+	std::cout << ":" << std::endl;
 }
 
 void printer_t::print_repeat_module()
@@ -69,9 +83,13 @@ void printer_t::print_complete_result(std::string number_arg, int base_from, int
 		<< " po zamianie na liczbe o podstawie " << base_to << " ma postac " << number_res << "." << std::endl << std::endl;
 }
 
-void printer_t::print_complete_result(std::string /*number_arg*/, int /*base*/, std::string /*number_res*/)
+void printer_t::print_complete_result(std::string number_arg, int base, std::string number_res, type_system_e first_number)
 {
-	// TODO
+	std::cout << std::endl << " Liczba " << number_arg << " w systemie ";
+	(type_system_e::positional == first_number) ? std::cout << "pozycyjnym o podstawie " << base : std::cout << "rzymskim";
+	std::cout << " po zamianie na liczbe w systemie ";
+	(type_system_e::positional == first_number) ? std::cout << "rzymskim" : std::cout << "pozycyjnym o podstawie " << base;
+	std::cout << " ma postac " << number_res << "." << std::endl << std::endl;
 }
 
 void printer_t::print_goodbye()
