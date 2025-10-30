@@ -9,6 +9,7 @@
 #define HANDLING_HPP
 
 #include "../api/convert.hpp"
+#include "../api/files.hpp"
 #include "../api/printer.hpp"
 
 class handling_t
@@ -38,6 +39,9 @@ private:
 
 	// Obiekt obs³uguj¹cy wypisywanie 
 	printer_t printer;
+
+	// Obiekt obs³uguj¹cy pliki
+	files_t files;
 };
 
 #endif

@@ -7,7 +7,7 @@
 
 #include "../api/handling.hpp"
 
-handling_t::handling_t() : option{}, convert{}, printer{}
+handling_t::handling_t() : option{}, convert{}, printer{}, files{}
 {
 	printer.print_entrance();
 	main_handling();

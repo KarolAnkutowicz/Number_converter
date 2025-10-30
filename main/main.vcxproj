@@ -129,12 +129,14 @@
   <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="src\convert.cpp" />
+    <ClCompile Include="src\files.cpp" />
     <ClCompile Include="src\handling.cpp" />
     <ClCompile Include="src\printer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="api\convert.hpp" />
     <ClInclude Include="api\defines.hpp" />
+    <ClInclude Include="api\files.hpp" />
     <ClInclude Include="api\handling.hpp" />
     <ClInclude Include="api\printer.hpp" />
   </ItemGroup>
