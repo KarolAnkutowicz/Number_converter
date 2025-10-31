@@ -60,15 +60,15 @@ void handling_t::positional_positional_handling(char& option)
 	switch (option)
 	{
 	case '1': // 2-20 na 2-20
-		number_result = convert.convert_positionals(number, base_1, base_2);
+		number_result /*= convert.convert_positive_positionals(number, base_1, base_2)*/;
 		break;
 	case '2': // 2-20 na -2
-		number_temp = convert.convert_positionals(number, base_1, 10);
+		number_temp /*= convert.convert_positive_positionals(number, base_1, 10)*/;
 		number_result = convert.convert_decimal_to_minus_two_positional(std::stoll(number_temp));
 		base_2 = -2;
 		break;
 	case '3': // -2 na 2-20
-		number_result = convert.convert_positionals(number, -2, base_1);
+		number_result /*= convert.convert_positive_positionals(number, -2, base_1)*/;
 		base_2 = base_1;
 		base_1 = -2;
 		break;
@@ -94,12 +94,12 @@ void handling_t::roman_positional_handling(char& option)
 	switch (option)
 	{
 	case '4': // pozycyjny na rzymski
-		number_temp = convert.convert_positionals(number, base, 10);
+		number_temp /*= convert.convert_positive_positionals(number, base, 10)*/;
 		number_result = convert.convert_decimal_to_roman(std::stoll(number_temp));
 		break;
 	case '5': // rzymski na pozycyjny
 		number_temp_roman = convert.convert_roman_to_decimal(number);
-		number_result = convert.convert_positionals(std::to_string(number_temp_roman), 10, base);
+		number_result /*= convert.convert_positive_positionals(std::to_string(number_temp_roman), 10, base)*/;
 		type_system = type_system_e::roman;
 		break;
 	default:
@@ -113,6 +113,8 @@ void handling_t::roman_positional_handling(char& option)
 
 void handling_t::files_handling(char& option)
 {
+	std::string filename{};
+
 	// TODO - obs³uga plików testowych (generowanie przyk³adów, rozwi¹zywanie, zapis do pliku)
 	switch (option)
 	{

@@ -14,6 +14,10 @@ class files_t
 {
 public:
 	files_t();
+	void create_file();
+	void view_file(std::string filename);
+private:
+	std::string create_filename();
 };
 
 #endif

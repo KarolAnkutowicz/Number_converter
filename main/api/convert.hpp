@@ -16,17 +16,30 @@ public:
 	// Konstruktor
 	convert_t();
 
-	// Metoda konwertuj¹ca pomiêdzy systemami pozycyjnymi
-	std::string convert_positionals(std::string base_number, int base_from, int base_to);
+	std::string convert_decimal_to_positive_positional(long long number_digit, int base_to);
+	long long convert_positive_positional_to_decimal(std::string number_string, int base_from);
+	std::string convert_decimal_to_roman(long long number_digit);
+	long long convert_roman_to_decimal(std::string number_string);
+	std::string convert_decimal_to_minus_two_positional(long long number_digit);
+	long long convert_minus_two_positional(std::string number_string);
+
+
+
+
+	// Metoda konwertuj¹ca pomiêdzy systemami pozycyjnymi o podstawach 2-20
+	//std::string convert_positive_positionals(std::string base_number, int base_from, int base_to);
 
 	// Metoda konwertuj¹ca liczbê z systemu pozycyjnego dziesiêtnego na rzymski
-	std::string convert_decimal_to_roman(unsigned long long number_digit);
+	//std::string convert_decimal_to_roman(unsigned long long number_digit);
 
 	// Metoda konweruj¹ca liczbê z systemu rzymskiego na pozycyjny dziesiêtny
-	unsigned long long convert_roman_to_decimal(std::string number_char);
+	//unsigned long long convert_roman_to_decimal(std::string number_char);
 
-	// Metoda konwertuj¹ca liczbê z systemu pozycyjnego na pozycyjny o podstawie -2
-	std::string convert_decimal_to_minus_two_positional(long long number_digit);
+	// Metoda konwertuj¹ca liczbê z systemu pozycyjnego o podstawie 2-20 na pozycyjny o podstawie -2
+	//std::string convert_positive_positional_to_minus_two_positional(std::string number_digit, int base_from);
+
+	// Metoda konwertuj¹ca liczbê z systemu pozycyjnego o podstawie -2 na pozycyjny o podstawie 2-20
+	//std::string convert_minus_two_positional_to_positive_positional(std::string number_digit, int base_to);
 
 private:
 	// Metoda pomocnicza sprawdzaj¹ca poprawnoœæ wprowadzonej liczby

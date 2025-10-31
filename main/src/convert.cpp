@@ -10,7 +10,45 @@
 convert_t::convert_t()
 {}
 
-std::string convert_t::convert_positionals(std::string base_number, int base_from, int base_to)
+std::string convert_t::convert_decimal_to_positive_positional(long long /*number_digit*/, int /*base_to*/)
+{
+	std::string result{};
+	return result;
+}
+
+long long convert_t::convert_positive_positional_to_decimal(std::string /*number_string*/, int /*base_from*/)
+{
+	long long result{};
+	return result;
+}
+
+std::string convert_t::convert_decimal_to_roman(long long /*number_digit*/)
+{
+	std::string result{};
+	return result;
+}
+
+long long convert_t::convert_roman_to_decimal(std::string /*number_string*/)
+{
+	long long result{};
+	return result;
+}
+
+std::string convert_t::convert_decimal_to_minus_two_positional(long long /*number_digit*/)
+{
+	std::string result{};
+	return result;
+}
+
+long long convert_t::convert_minus_two_positional(std::string /*number_string*/)
+{
+	long long result{};
+	return result;
+}
+
+
+
+/*std::string convert_t::convert_positive_positionals(std::string base_number, int base_from, int base_to)
 {
 	std::string result = "";
 	if (("" != base_number) && check_number(base_number, base_from)
@@ -50,9 +88,9 @@ std::string convert_t::convert_positionals(std::string base_number, int base_fro
 		}
 	}
 	return result;
-}
+}*/
 
-std::string convert_t::convert_decimal_to_roman(unsigned long long number_digit)
+/*std::string convert_t::convert_decimal_to_roman(unsigned long long number_digit)
 {
 	std::string result = "";
 	unsigned long long number = number_digit, rest = {};
@@ -84,9 +122,9 @@ std::string convert_t::convert_decimal_to_roman(unsigned long long number_digit)
 		} while (number > 0);
 	}
 	return result;
-}
+}*/
 
-unsigned long long convert_t::convert_roman_to_decimal(std::string number_char)
+/*unsigned long long convert_t::convert_roman_to_decimal(std::string number_char)
 {
 	std::string number = number_char;
 	unsigned long long result = 0;
@@ -112,9 +150,14 @@ unsigned long long convert_t::convert_roman_to_decimal(std::string number_char)
 		} while (number.length() > 0);
 	}
 	return result;
-}
+}*/
 
-std::string convert_t::convert_decimal_to_minus_two_positional(long long number_digit)
+/*std::string convert_t::convert_positive_positional_to_minus_two_positional(std::string number_digit, int base_from)
+{
+
+}*/
+
+/*std::string convert_t::convert_decimal_to_minus_two_positional(long long number_digit)
 {
 	std::string result = "";
 	if (0 != number_digit)
@@ -135,7 +178,12 @@ std::string convert_t::convert_decimal_to_minus_two_positional(long long number_
 		} while (0 != number);
 	}
 	return result;
-}
+}*/
+
+/*std::string convert_t::convert_minus_two_positional_to_positive_positional(std::string number_digit, int base_to)
+{
+
+}*/
 
 bool convert_t::check_number(std::string base_number, int base)
 {
