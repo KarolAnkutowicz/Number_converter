@@ -49,7 +49,7 @@ void handling_t::main_handling()
 
 void handling_t::positional_positional_handling(char& option)
 {
-	std::string number{}, number_temp{}, number_result{};
+	std::string number{}, number_result{};
 	int base_1{}, base_2{};
 	char option_loc;
 
@@ -60,17 +60,20 @@ void handling_t::positional_positional_handling(char& option)
 	switch (option)
 	{
 	case '1': // 2-20 na 2-20
-		number_result /*= convert.convert_positive_positionals(number, base_1, base_2)*/;
+		if (10 == base_1)
+			number_result = convert.convert_decimal_to_positive_positional(std::stoll(number), base_2);
+		else if (10 == base_2)
+			number_result = std::to_string(convert.convert_positive_positional_to_decimal(number, base_1));
+		else
+			number_result = convert.convert_decimal_to_positive_positional(convert.convert_positive_positional_to_decimal(number, base_1), base_2);
 		break;
 	case '2': // 2-20 na -2
-		number_temp /*= convert.convert_positive_positionals(number, base_1, 10)*/;
-		number_result = convert.convert_decimal_to_minus_two_positional(std::stoll(number_temp));
-		base_2 = -2;
+		(10 == base_1) ? number_result = convert.convert_decimal_to_minus_two_positional(std::stoll(number))
+			: number_result = convert.convert_decimal_to_minus_two_positional(convert.convert_positive_positional_to_decimal(number, base_1));
 		break;
 	case '3': // -2 na 2-20
-		number_result /*= convert.convert_positive_positionals(number, -2, base_1)*/;
-		base_2 = base_1;
-		base_1 = -2;
+		(10 == base_1) ? number_result = std::to_string(convert.convert_minus_two_positional_to_decimal(number))
+			: number_result = convert.convert_decimal_to_positive_positional(convert.convert_minus_two_positional_to_decimal(number), base_1);
 		break;
 	default:
 		break;
