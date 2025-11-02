@@ -97,13 +97,12 @@ void handling_t::roman_positional_handling(char& option)
 	switch (option)
 	{
 	case '4': // pozycyjny na rzymski
-		number_temp /*= convert.convert_positive_positionals(number, base, 10)*/;
-		number_result = convert.convert_decimal_to_roman(std::stoll(number_temp));
+		(10 == base) ? number_result = convert.convert_decimal_to_roman(stoll(number))
+			: number_result = convert.convert_decimal_to_roman(convert.convert_positive_positional_to_decimal(number, base));
 		break;
 	case '5': // rzymski na pozycyjny
-		number_temp_roman = convert.convert_roman_to_decimal(number);
-		number_result /*= convert.convert_positive_positionals(std::to_string(number_temp_roman), 10, base)*/;
-		type_system = type_system_e::roman;
+		(10 == base) ? number_result = std::to_string(convert.convert_roman_to_decimal(number))
+			: number_result = convert.convert_decimal_to_positive_positional(convert.convert_roman_to_decimal(number), base);
 		break;
 	default:
 		break;
